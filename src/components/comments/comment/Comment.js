@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { HiPlusSm, HiMinusSm } from "react-icons/hi";
 import { FaReply } from "react-icons/fa";
+import { RiPencilFill } from "react-icons/ri";
+import { MdDelete } from "react-icons/md";
 
 const CommentContainer = styled.div`
   border-radius: 0.5rem;
@@ -50,24 +52,61 @@ const Message = styled.p`
 const CommentStats = styled.div`
   background-color: hsl(225, 25%, 97%);
   color: hsl(245, 26%, 81%);
-  padding: 0.5rem;
+  padding: 0.5rem 0;
   border-radius: 0.3rem;
-  width: 5rem;
+  width: 6rem;
   display: flex;
   justify-content: space-around;
+  align-items: center;
+  svg {
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
 `;
 const Count = styled.div`
-  color: hsl(242, 30%, 43%);
-  font-weight: 600;
+  color: hsl(242, 32%, 51%);
+  font-weight: bold;
+  font-family: "Montserrat", sans-serif;
 `;
 
 const Reply = styled.div`
-  color: hsl(242, 30%, 43%);
+  color: hsl(242, 32%, 51%);
+  padding: 0.5rem;
   font-weight: 600;
-  position: absolute;
+  font-family: "Montserrat", sans-serif;
+  display: flex;
+  align-items: center;
+  svg {
+    margin-right: 0.3rem;
+  }
+`;
+const ModifyComment = styled.div`
   right: 1rem;
   bottom: 1rem;
   padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
+`;
+const DeleteCom = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: hsl(358, 79%, 66%);
+`;
+const EditCom = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: hsl(242, 32%, 51%);
+`;
+
+const MessageControl = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 const Comment = () => {
   return (
@@ -88,14 +127,24 @@ const Comment = () => {
           omnis impedit reprehenderit inventore, consectetur libero nisi
           deserunt animi.
         </Message>
-        <CommentStats>
-          <HiPlusSm />
-          <Count>12</Count>
-          <HiMinusSm />
-        </CommentStats>
-        <Reply>
-          <FaReply /> Reply
-        </Reply>
+        <MessageControl>
+          <CommentStats>
+            <HiPlusSm />
+            <Count>12</Count>
+            <HiMinusSm />
+          </CommentStats>
+          <Reply>
+            <FaReply /> Reply
+          </Reply>
+          {/* <ModifyComment>
+            <DeleteCom>
+              <MdDelete /> Delete
+            </DeleteCom>
+            <EditCom>
+              <RiPencilFill /> Edit
+            </EditCom>
+          </ModifyComment> */}
+        </MessageControl>
       </CommentWrapper>
     </CommentContainer>
   );
