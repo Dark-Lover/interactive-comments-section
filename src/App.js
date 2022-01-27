@@ -1,7 +1,8 @@
 import "./App.css";
+import Comments from "./components/comments/Comments";
 
 function App() {
-  return <div className="App">Hello World</div>;
+  return <Comments />;
 }
 
 export default App;
