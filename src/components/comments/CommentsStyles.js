@@ -10,6 +10,8 @@ export const CommentsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  max-width: 768px;
+  margin: auto;
 `;
 
 export const ReplyBox = styled.div`

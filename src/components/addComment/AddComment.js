@@ -16,10 +16,10 @@ const AddInput = styled.textarea`
   border: 1px solid hsl(228, 12%, 88%);
   resize: none;
   border-radius: 0.5rem;
-  padding: 0.5rem;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 500;
+  padding: 0.5rem 1rem;
+  font-weight: 400;
   outline: none;
+  font-family: "Rubik", sans-serif;
 `;
 const User = styled.div`
   display: flex;
@@ -35,9 +35,9 @@ const Avatar = styled.img`
   margin-right: 1rem;
 `;
 const SendBtn = styled.button`
-  font-family: "Montserrat", sans-serif;
+  font-family: "Rubik", sans-serif;
   padding: 0.8rem 1.5rem;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: 0.03rem;
   color: white;
   border: none;
