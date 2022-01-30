@@ -10,6 +10,7 @@ export const CommentWrapper = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+
   @media screen and (min-width: 600px) {
     flex-direction: row;
   }

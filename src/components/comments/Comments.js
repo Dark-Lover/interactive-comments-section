@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import AddComment from "../addComment/AddComment";
-import Comment from "./comment/Comment";
 import { CommentsContainer, CommentsWrapper, ReplyBox } from "./CommentsStyles";
 import { useDispatch, useSelector } from "react-redux";
 import { fetch_comments } from "../../redux";
 import data from "../../nodeData.json";
+import ShowComment from "./reply/ShowComment";
 const fetchData = async () => {
   try {
     const jsonData = await data;
@@ -34,7 +34,7 @@ const Comments = () => {
       <CommentsWrapper>
         {dataReady
           ? comments.map((comment) => {
-              return <Comment content={comment} key={comment.id} />;
+              return <ShowComment content={comment} key={comment.id} />;
             })
           : "waloooo"}
 
