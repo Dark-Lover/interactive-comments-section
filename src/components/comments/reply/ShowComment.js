@@ -3,10 +3,16 @@ import styled from "styled-components";
 import Comment from "../comment/Comment";
 
 const ReplyContainer = styled.div``;
-const ReplyWrapper = styled.div``;
+const ReplyWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+`;
 const ReplyBox = styled.div`
   padding-left: 1.5rem;
-  padding-top: 1rem;
+  /* padding-top: 1rem;
+  padding-bottom: 1rem; */
   position: relative;
   display: flex;
   flex-direction: column;
@@ -29,7 +35,7 @@ const ReplyCom = ({ content }) => {
         {content.replies.length !== 0 ? (
           <ReplyBox>
             {content.replies.map((reply) => {
-              return <Comment content={reply} />;
+              return <Comment content={reply} key={reply.id} />;
             })}
           </ReplyBox>
         ) : (

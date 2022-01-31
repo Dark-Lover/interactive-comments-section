@@ -2,13 +2,13 @@ import styled from "styled-components";
 
 export const CommentContainer = styled.div`
   border-radius: 0.5rem;
-  background-color: white;
   overflow: hidden;
 `;
 export const CommentWrapper = styled.div`
   padding: 1rem;
   position: relative;
   display: flex;
+  background-color: white;
   flex-direction: column;
 
   @media screen and (min-width: 600px) {

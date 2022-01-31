@@ -10,8 +10,10 @@ import {
 import AddComment from "../../addComment/AddComment";
 
 const Comment = ({ content }) => {
-  console.log(content);
+  // console.log(content);
   const [reply, setReply] = useState(false);
+  const [edit, setEdit] = useState(false);
+  const [deleteCom, setDelete] = useState(false);
   return (
     <CommentContainer>
       <CommentWrapper>
@@ -36,10 +38,10 @@ const Comment = ({ content }) => {
           {content.user.username === "juliusomo" ? (
             <Reply>
               <ModifyComment>
-                <DeleteCom>
+                <DeleteCom onClick={() => setDelete(!deleteCom)}>
                   <MdDelete /> Delete
                 </DeleteCom>
-                <EditCom>
+                <EditCom onClick={() => setEdit(!edit)}>
                   <RiPencilFill /> Edit
                 </EditCom>
               </ModifyComment>
@@ -51,7 +53,18 @@ const Comment = ({ content }) => {
           )}
         </MessageControl>
       </CommentWrapper>
-      {reply ? <AddComment /> : ""}
+      {reply ? (
+        <AddComment type="Reply" origin={content} setterHandler={setReply} />
+      ) : (
+        ""
+      )}
+      {edit ? (
+        <AddComment type="UPDATE" origin={content} setterHandler={setEdit} />
+      ) : (
+        ""
+      )}
+      {/* TODO: Add Delete Modal instead of Add comment*/}
+      {/* {deleteCom ? <AddComment type="DELETE" origin={content} /> : ""} */}
     </CommentContainer>
   );
 };

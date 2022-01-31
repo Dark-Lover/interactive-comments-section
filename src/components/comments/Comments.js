@@ -21,6 +21,7 @@ const Comments = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log("comments useEffect");
     const myData = fetchData();
     myData
       .then((res) => {
@@ -43,8 +44,8 @@ const Comments = () => {
         <ReplyBox>
           <Comment />
           <Comment />
-        </ReplyBox>
-        <AddComment /> */}
+        </ReplyBox>*/}
+        {dataReady ? <AddComment type="SEND" setterHandler="" /> : ""}
       </CommentsWrapper>
     </CommentsContainer>
   );
