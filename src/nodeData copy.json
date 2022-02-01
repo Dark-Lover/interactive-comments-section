@@ -1,6 +1,9 @@
 {
   "currentUser": {
-    "image": { "png": "image-juliusomo.png", "webp": "image-juliusomo.webp" },
+    "image": {
+      "png": "image-juliusomo.png",
+      "webp": "image-juliusomo.webp"
+    },
     "username": "juliusomo"
   },
   "comments": [
@@ -16,7 +19,22 @@
         },
         "username": "amyrobson"
       },
-      "replies": []
+      "replies": [
+        {
+          "id": 4,
+          "content": "I couldn't agree more with this. Everything moves so fast and it always seems like everyone knows the newest library/framework. But the fundamentals are what stay constant.",
+          "createdAt": "2 days ago",
+          "score": 2,
+          "replyingTo": "ramsesmiron",
+          "user": {
+            "image": {
+              "png": "image-juliusomo.png",
+              "webp": "image-juliusomo.webp"
+            },
+            "username": "juliusomo"
+          }
+        }
+      ]
     },
     {
       "id": 2,
@@ -60,48 +78,6 @@
           }
         }
       ]
-    },
-    {
-      "content": "The first Dynamic Comment Post",
-      "user": {
-        "image": {
-          "png": "image-amyrobson.png",
-          "webp": "image-amyrobson.webp"
-        },
-        "username": "Person Zen"
-      },
-      "id": 3,
-      "createdAt": "6 days ago",
-      "score": 0,
-      "replies": []
-    },
-    {
-      "content": "The 2nd One give more pleasure programming :) ",
-      "user": {
-        "image": {
-          "png": "image-amyrobson.png",
-          "webp": "image-amyrobson.webp"
-        },
-        "username": "Person Zen"
-      },
-      "id": 4,
-      "createdAt": "6 days ago",
-      "score": 0,
-      "replies": []
-    },
-    {
-      "content": "The 3rd is a happy to be there :) ",
-      "user": {
-        "image": {
-          "png": "image-amyrobson.png",
-          "webp": "image-amyrobson.webp"
-        },
-        "username": "Person Zen"
-      },
-      "id": 5,
-      "createdAt": "6 days ago",
-      "score": 0,
-      "replies": []
     }
   ]
 }

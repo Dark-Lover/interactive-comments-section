@@ -28,11 +28,11 @@ app.use((req, res, next) => {
 // Root
 
 app.get('/', (req, res) => {
-  res.set({
-    contentfrom: 'Comments Interactive',
-    Message: 'Trying to send Headers',
-    Time: `${new Date().toISOString()}`,
-  });
+  // res.set({
+  //   contentfrom: 'Comments Interactive',
+  //   Message: 'Trying to send Headers',
+  //   Time: `${new Date().toISOString()}`,
+  // });
   res.status(200).send('Hello we are Alive from app');
 });
 

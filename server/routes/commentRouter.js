@@ -1,6 +1,9 @@
 const router = require('express').Router();
-const { getAllComments } = require('../controllers/getAllComments');
+const {
+  getAllComments,
+  addComment,
+} = require('../controllers/commentContoller');
 
-router.route('/comments').get(getAllComments);
+router.route('/comments').get(getAllComments).post(addComment);
 
 module.exports = router;
