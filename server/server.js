@@ -1,12 +1,10 @@
 //TODO: Creating the server
-const express = require("express");
-const PORT = 8000;
-const server = express();
+const dotenv = require('dotenv');
+dotenv.config({ path: './config.env' });
+const app = require('./app');
 
-server.listen(PORT, "127.0.0.1", () => {
-  console.log("Listening to LocalHost on port: ", PORT);
-});
+const PORT = process.env.PORT || 9000;
 
-server.get("/", (req, res) => {
-  res.status(200).send("Hello we are Alive");
+app.listen(PORT, () => {
+  console.log('Listening to LocalHost on port: ', PORT);
 });
