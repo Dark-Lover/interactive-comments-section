@@ -5,19 +5,20 @@ import {
   AddContainer,AddWrapper,AddInput,User,Avatar,SendBtn,
 } from "./AddStyles";
 
-const handleAction = (type) => {
-  console.log(`This Action ${type} has happened !`);
-};
 const AddComment = ({ type, origin, setterHandler }) => {
   const { user } = useSelector((state) => state);
   const [message, setMessage] = useState("");
   const hideInput = setterHandler !== "" ? setterHandler : () => {};
   console.log("content in add comment");
-  console.log(origin);
-  console.log(type);
-  console.log("message: ", message);
+  if (origin) console.log(`we are ${type} to ${origin.user.username}`);
+  else {
+    console.log("just ADDING A NEW COMMENT");
+  }
   const handleInput = (val) => {
     setMessage(val);
+  };
+  const handleAction = (type) => {
+    console.log(`This Action ${type} has happened on ${origin.user.username}!`);
   };
   return (
     <AddContainer>

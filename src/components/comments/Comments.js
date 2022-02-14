@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetch_comments } from "../../redux";
 import data from "../../nodeData.json";
 import ShowComment from "./reply/ShowComment";
+import Loading from "../loading/Loading";
 const fetchData = async () => {
   try {
     const jsonData = await data;
@@ -33,11 +34,13 @@ const Comments = () => {
   return (
     <CommentsContainer>
       <CommentsWrapper>
-        {dataReady
-          ? comments.map((comment) => {
-              return <ShowComment content={comment} key={comment.id} />;
-            })
-          : "waloooo"}
+        {dataReady ? (
+          comments.map((comment) => {
+            return <ShowComment content={comment} key={comment.id} />;
+          })
+        ) : (
+          <Loading />
+        )}
 
         {/* <Comment />
         <AddComment />
