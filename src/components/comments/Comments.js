@@ -3,14 +3,15 @@ import AddComment from "../addComment/AddComment";
 import { CommentsContainer, CommentsWrapper, ReplyBox } from "./CommentsStyles";
 import { useDispatch, useSelector } from "react-redux";
 import { fetch_comments } from "../../redux";
-import data from "../../nodeData.json";
 import ShowComment from "./reply/ShowComment";
 import Loading from "../loading/Loading";
+import services from "../../redux/manage/axiosServices";
 const fetchData = async () => {
   try {
-    const jsonData = await data;
-    return jsonData;
-    // console.log(myData);
+    const { getAll } = services;
+    const jsonData = await getAll();
+    console.log(jsonData.data.data[0]);
+    return jsonData.data.data[0];
   } catch (error) {
     console.log("error from fetchData Func: ", error);
   }

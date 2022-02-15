@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { add_comment } from "../../redux";
 // prettier-ignore
 import {
   AddContainer,AddWrapper,AddInput,User,Avatar,SendBtn,
@@ -7,9 +9,11 @@ import {
 
 const AddComment = ({ type, origin, setterHandler }) => {
   const { user } = useSelector((state) => state);
+  const dispatch = useDispatch();
   const [message, setMessage] = useState("");
+  const [submitted, setSubmitted] = useState(false);
   const hideInput = setterHandler !== "" ? setterHandler : () => {};
-  console.log("content in add comment");
+  // console.log("content in add comment");
   if (origin) console.log(`we are ${type} to ${origin.user.username}`);
   else {
     console.log("just ADDING A NEW COMMENT");
@@ -18,7 +22,22 @@ const AddComment = ({ type, origin, setterHandler }) => {
     setMessage(val);
   };
   const handleAction = (type) => {
-    console.log(`This Action ${type} has happened on ${origin.user.username}!`);
+    // console.log(`This Action ${type} has happened on ${origin.user.username}!`);
+    setSubmitted(true);
+    console.log("add comment");
+    console.log("my message: ", message);
+    const newMessage = {
+      id: 6,
+      content: message,
+      createdAt: "Now",
+      score: 0,
+      user: {
+        image: { png: "image-juliusomo.png", webp: "image-juliusomo.webp" },
+        username: "juliusomo",
+      },
+      replies: [],
+    };
+    dispatch(add_comment(newMessage));
   };
   return (
     <AddContainer>

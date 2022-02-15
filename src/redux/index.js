@@ -1,1 +1,1 @@
-export { fetch_comments } from "./manage/ManageActions";
+export { fetch_comments, add_comment } from "./manage/ManageActions";
