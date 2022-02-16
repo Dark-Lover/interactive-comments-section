@@ -1,6 +1,7 @@
 // TODO: Add Middlewares
 const express = require('express');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 const app = express();
 
 const morgan = require('morgan');
@@ -12,6 +13,7 @@ const userRouter = require('./routes/userRoutes');
 
 // apply middleware
 app.use(cors());
+app.use(bodyParser.json());
 app.use(express.json());
 if (process.env.NODE_ENV === 'developement') {
   app.use(morgan('dev'));

@@ -2,7 +2,7 @@ import { FETCH_ALL_COMMENTS, ADD_COMMENT } from "./ManageTypes";
 const initialState = {
   comments: [],
   user: {},
-  currentComment: {},
+  currentComment: "",
 };
 
 const commentReducer = (state = initialState, action) => {
@@ -20,7 +20,6 @@ const commentReducer = (state = initialState, action) => {
       return {
         ...state,
         currentComment: payload,
-        comments: [...state.comments, payload],
       };
     // Default Return
     default:

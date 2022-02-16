@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
+import services from "../../redux/manage/axiosServices";
 import { useSelector, useDispatch } from "react-redux";
 import { add_comment } from "../../redux";
 // prettier-ignore
@@ -7,10 +8,11 @@ import {
   AddContainer,AddWrapper,AddInput,User,Avatar,SendBtn,
 } from "./AddStyles";
 
-const AddComment = ({ type, origin, setterHandler }) => {
+const AddComment = ({ type, origin, setterHandler, setNewChange }) => {
   const { user } = useSelector((state) => state);
   const dispatch = useDispatch();
   const [message, setMessage] = useState("");
+  const [clearInput, setClearInput] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const hideInput = setterHandler !== "" ? setterHandler : () => {};
   // console.log("content in add comment");
@@ -22,22 +24,29 @@ const AddComment = ({ type, origin, setterHandler }) => {
     setMessage(val);
   };
   const handleAction = (type) => {
-    // console.log(`This Action ${type} has happened on ${origin.user.username}!`);
     setSubmitted(true);
-    console.log("add comment");
-    console.log("my message: ", message);
-    const newMessage = {
-      id: 6,
-      content: message,
-      createdAt: "Now",
-      score: 0,
-      user: {
-        image: { png: "image-juliusomo.png", webp: "image-juliusomo.webp" },
-        username: "juliusomo",
-      },
-      replies: [],
-    };
-    dispatch(add_comment(newMessage));
+    console.log("Hada howa type: ", type);
+    //* ADD a New Comment
+    if (type === "SEND") {
+      const { create } = services;
+      console.log(create);
+      console.log("add comment");
+      console.log("my message: ", message);
+      dispatch(add_comment(message));
+      const newMsg = { content: message };
+      create(newMsg)
+        .then((res) => {
+          console.log("added");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      setNewChange(true);
+    }
+    //* ADD a New Reply
+    if (type === "Reply") {
+      console.log("new Reply");
+    }
   };
   return (
     <AddContainer>
@@ -48,6 +57,8 @@ const AddComment = ({ type, origin, setterHandler }) => {
               ? `@${origin?.user.username} `
               : type === "UPDATE"
               ? `${origin?.content}`
+              : clearInput
+              ? ""
               : message
           }
           onChange={(e) => handleInput(e.target.value)}
@@ -59,6 +70,7 @@ const AddComment = ({ type, origin, setterHandler }) => {
             onClick={() => {
               handleAction(type);
               hideInput(false);
+              setClearInput(true);
             }}
           >
             {type === "Reply" ? "SEND" : type}

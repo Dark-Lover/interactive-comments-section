@@ -18,20 +18,24 @@ exports.getAllComments = (req, res) => {
   res.status(200).json(commentsWrapper);
 };
 
-//* Add a comment
+//? ADD a comment using Axios
 exports.addComment = (req, res) => {
   const newList = comments;
-  //Initialise a new Comment id,createdAt,score,replies ..
   const newId = Object.keys(comments.comments).length + 1;
   const createdAt = timePassed();
-  console.log(createdAt);
   const newComment = Object.assign(req.body, {
     id: newId,
     createdAt: createdAt,
     score: 0,
     replies: [],
+    user: {
+      image: {
+        png: 'image-juliusomo.png',
+        webp: 'image-juliusomo.webp',
+      },
+      username: 'juliusomo',
+    },
   });
-
   newList.comments.push(newComment);
   fs.writeFile(
     `${__dirname}/../../src/nodeData.json`,
@@ -44,3 +48,29 @@ exports.addComment = (req, res) => {
     }
   );
 };
+//! Add a comment using FS
+// exports.addComment = (req, res) => {
+//   const newList = comments;
+//   //Initialise a new Comment id,createdAt,score,replies ..
+//   const newId = Object.keys(comments.comments).length + 1;
+//   const createdAt = timePassed();
+//   console.log(createdAt);
+//   const newComment = Object.assign(req.body, {
+//     id: newId,
+//     createdAt: createdAt,
+//     score: 0,
+//     replies: [],
+//   });
+
+//   newList.comments.push(newComment);
+//   fs.writeFile(
+//     `${__dirname}/../../src/nodeData.json`,
+//     JSON.stringify(newList),
+//     (err) => {
+//       res.status(201).json({
+//         status: 'success',
+//         data: { comment: newComment },
+//       });
+//     }
+//   );
+// };

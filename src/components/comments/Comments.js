@@ -20,6 +20,7 @@ const fetchData = async () => {
 const Comments = () => {
   const { comments } = useSelector((state) => state);
   const [dataReady, setDataReady] = useState(false);
+  const [newChange, setNewChange] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -31,7 +32,8 @@ const Comments = () => {
         setDataReady(true);
       })
       .catch((err) => console.log(err));
-  }, []);
+    setNewChange(false);
+  }, [newChange]);
   return (
     <CommentsContainer>
       <CommentsWrapper>
@@ -49,7 +51,15 @@ const Comments = () => {
           <Comment />
           <Comment />
         </ReplyBox>*/}
-        {dataReady ? <AddComment type="SEND" setterHandler="" /> : ""}
+        {dataReady ? (
+          <AddComment
+            type="SEND"
+            setterHandler=""
+            setNewChange={setNewChange}
+          />
+        ) : (
+          ""
+        )}
       </CommentsWrapper>
     </CommentsContainer>
   );
