@@ -12,7 +12,7 @@ const create = (data) => {
 };
 
 const update = (id, data) => {
-  return http.put(`/comments/${id}`, data);
+  return http.patch(`/comments/${id}`, data);
 };
 
 const remove = (id) => {

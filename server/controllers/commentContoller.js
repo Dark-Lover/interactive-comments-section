@@ -2,7 +2,7 @@ const fs = require('fs');
 const { timePassed } = require('../helpers/getTimePassed');
 // Getting Data
 const comments = JSON.parse(
-  fs.readFileSync(`${__dirname}/../../src/nodeData.json`)
+  fs.readFileSync(`${__dirname}/../modal/serverData.json`)
 );
 
 //? Controllers
@@ -18,7 +18,7 @@ exports.getAllComments = (req, res) => {
   res.status(200).json(commentsWrapper);
 };
 
-//? ADD a comment using Axios
+//* ADD a comment using Axios
 exports.addComment = (req, res) => {
   const newList = comments;
   const newId = Object.keys(comments.comments).length + 1;
@@ -38,7 +38,7 @@ exports.addComment = (req, res) => {
   });
   newList.comments.push(newComment);
   fs.writeFile(
-    `${__dirname}/../../src/nodeData.json`,
+    `${__dirname}/../modal/serverData.json`,
     JSON.stringify(newList),
     (err) => {
       res.status(201).json({
@@ -48,29 +48,13 @@ exports.addComment = (req, res) => {
     }
   );
 };
-//! Add a comment using FS
-// exports.addComment = (req, res) => {
-//   const newList = comments;
-//   //Initialise a new Comment id,createdAt,score,replies ..
-//   const newId = Object.keys(comments.comments).length + 1;
-//   const createdAt = timePassed();
-//   console.log(createdAt);
-//   const newComment = Object.assign(req.body, {
-//     id: newId,
-//     createdAt: createdAt,
-//     score: 0,
-//     replies: [],
-//   });
 
-//   newList.comments.push(newComment);
-//   fs.writeFile(
-//     `${__dirname}/../../src/nodeData.json`,
-//     JSON.stringify(newList),
-//     (err) => {
-//       res.status(201).json({
-//         status: 'success',
-//         data: { comment: newComment },
-//       });
-//     }
-//   );
-// };
+//* Update a Comment
+exports.updateComment = (req, res) => {
+  console.log(req.body.data);
+  res.status(200).send({
+    message: "7na db fl'update",
+    id: req.params.id,
+    newMsg: req.body.data,
+  });
+};

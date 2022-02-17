@@ -62,46 +62,60 @@
       ]
     },
     {
-      "content": "The first Dynamic Comment Post",
-      "user": {
-        "image": {
-          "png": "image-amyrobson.png",
-          "webp": "image-amyrobson.webp"
-        },
-        "username": "Person Zen"
-      },
+      "content": "machakil",
       "id": 3,
-      "createdAt": "6 days ago",
+      "createdAt": "More than 2 Weeks",
       "score": 0,
-      "replies": []
-    },
-    {
-      "content": "The 2nd One give more pleasure programming :) ",
+      "replies": [],
       "user": {
         "image": {
-          "png": "image-amyrobson.png",
-          "webp": "image-amyrobson.webp"
+          "png": "image-juliusomo.png",
+          "webp": "image-juliusomo.webp"
         },
-        "username": "Person Zen"
-      },
+        "username": "juliusomo"
+      }
+    },
+    {
+      "content": "test jdid 3la alah",
       "id": 4,
-      "createdAt": "6 days ago",
+      "createdAt": "Today",
       "score": 0,
-      "replies": []
-    },
-    {
-      "content": "The 3rd is a happy to be there :) ",
+      "replies": [],
       "user": {
         "image": {
-          "png": "image-amyrobson.png",
-          "webp": "image-amyrobson.webp"
+          "png": "image-juliusomo.png",
+          "webp": "image-juliusomo.webp"
         },
-        "username": "Person Zen"
-      },
+        "username": "juliusomo"
+      }
+    },
+    {
+      "content": "maaan thats awesome",
       "id": 5,
-      "createdAt": "6 days ago",
+      "createdAt": "Today",
       "score": 0,
-      "replies": []
+      "replies": [],
+      "user": {
+        "image": {
+          "png": "image-juliusomo.png",
+          "webp": "image-juliusomo.webp"
+        },
+        "username": "juliusomo"
+      }
+    },
+    {
+      "content": "saaalam achrfa",
+      "id": 6,
+      "createdAt": "Today",
+      "score": 0,
+      "replies": [],
+      "user": {
+        "image": {
+          "png": "image-juliusomo.png",
+          "webp": "image-juliusomo.webp"
+        },
+        "username": "juliusomo"
+      }
     }
   ]
 }

@@ -25,18 +25,14 @@ const AddComment = ({ type, origin, setterHandler, setNewChange }) => {
   };
   const handleAction = (type) => {
     setSubmitted(true);
-    console.log("Hada howa type: ", type);
     //* ADD a New Comment
     if (type === "SEND") {
       const { create } = services;
-      console.log(create);
-      console.log("add comment");
-      console.log("my message: ", message);
       dispatch(add_comment(message));
       const newMsg = { content: message };
       create(newMsg)
         .then((res) => {
-          console.log("added");
+          setSubmitted(false);
         })
         .catch((err) => {
           console.log(err);
@@ -47,21 +43,38 @@ const AddComment = ({ type, origin, setterHandler, setNewChange }) => {
     if (type === "Reply") {
       console.log("new Reply");
     }
+    //* Update a Comment
+    if (type === "UPDATE") {
+      setClearInput(false);
+      const { update } = services;
+      const data = message;
+      update(origin.id, { data: data })
+        .then((res) => console.log(`We are updating ${origin.id}`))
+        .catch((err) => console.log(`error Updating ${origin.id}`));
+    }
   };
   return (
     <AddContainer>
       <AddWrapper>
         <AddInput
-          value={
-            type === "Reply" && message === ""
+          // value={
+          //   type === "Reply" && message === ""
+          //     ? `@${origin?.user.username} `
+          //     : type === "UPDATE"
+          //     ? `${origin?.content} `
+          //     : clearInput
+          //     ? ""
+          //     : message
+          // }
+          // value={message}
+          onChange={(e) => handleInput(e.target.value)}
+          defaultValue={
+            type === "UPDATE"
+              ? `${origin?.content} `
+              : type === "Reply"
               ? `@${origin?.user.username} `
-              : type === "UPDATE"
-              ? `${origin?.content}`
-              : clearInput
-              ? ""
               : message
           }
-          onChange={(e) => handleInput(e.target.value)}
         />
         <User>
           <Avatar src={require(`../../assets/avatars/${user?.image.png}`)} />
