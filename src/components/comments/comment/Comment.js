@@ -8,12 +8,14 @@ import {
   CommentContainer,CommentWrapper,Content,CommentAuthor,Infos,Avatar,Name,CommentDate,Message,MessageControl,CommentStats,Count,Reply,ModifyComment,DeleteCom,EditCom,
 } from "./CommentStyles";
 import AddComment from "../../addComment/AddComment";
+import { useEffect } from "react";
 
 const Comment = ({ content }) => {
   // console.log(content);
   const [reply, setReply] = useState(false);
   const [edit, setEdit] = useState(false);
   const [deleteCom, setDelete] = useState(false);
+  useEffect(() => {}, [edit]);
   return (
     <CommentContainer>
       <CommentWrapper>

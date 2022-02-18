@@ -1,5 +1,6 @@
 const fs = require('fs');
 const { timePassed } = require('../helpers/getTimePassed');
+const { deleteItem } = require('../helpers/deleteItem');
 // Getting Data
 const comments = JSON.parse(
   fs.readFileSync(`${__dirname}/../modal/serverData.json`)
@@ -51,10 +52,24 @@ exports.addComment = (req, res) => {
 
 //* Update a Comment
 exports.updateComment = (req, res) => {
-  console.log(req.body.data);
-  res.status(200).send({
-    message: "7na db fl'update",
-    id: req.params.id,
-    newMsg: req.body.data,
-  });
+  const newContent = req.body.data;
+  const newList = comments.comments;
+  const myId = +req.params.id;
+  console.log(typeof myId);
+  const comToUp = newList.find((el) => el.id === myId);
+  comToUp.content = newContent;
+  console.log(comToUp);
+  console.log('#######################################');
+  console.log(newList);
+  comments.comments = newList;
+  fs.writeFile(
+    `${__dirname}/../modal/serverData.json`,
+    JSON.stringify(comments),
+    (err) => {
+      res.status(201).json({
+        status: 'success',
+        data: { comment: comToUp },
+      });
+    }
+  );
 };

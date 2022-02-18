@@ -51,6 +51,7 @@ const AddComment = ({ type, origin, setterHandler, setNewChange }) => {
       update(origin.id, { data: data })
         .then((res) => console.log(`We are updating ${origin.id}`))
         .catch((err) => console.log(`error Updating ${origin.id}`));
+      setterHandler(true);
     }
   };
   return (
