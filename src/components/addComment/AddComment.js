@@ -2,21 +2,18 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import services from "../../redux/manage/axiosServices";
 import { useSelector, useDispatch } from "react-redux";
-import { add_comment } from "../../redux";
 // prettier-ignore
 import {
   AddContainer,AddWrapper,AddInput,User,Avatar,SendBtn,
 } from "./AddStyles";
+import { add_comment, newchange_false } from "../../redux";
 
-const AddComment = ({ type, origin, setterHandler, setNewChange }) => {
+const AddComment = ({ type, origin, setterHandler }) => {
   const { user } = useSelector((state) => state);
   const dispatch = useDispatch();
   const [message, setMessage] = useState("");
-  const [clearInput, setClearInput] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
   const hideInput = setterHandler !== "" ? setterHandler : () => {};
-  // console.log("content in add comment");
-  if (origin) console.log(`we are ${type} to ${origin.user.username}`);
+  if (origin) console.log(`we are ${type} to ${origin.id} with type: ${type}`);
   else {
     console.log("just ADDING A NEW COMMENT");
   }
@@ -24,7 +21,6 @@ const AddComment = ({ type, origin, setterHandler, setNewChange }) => {
     setMessage(val);
   };
   const handleAction = (type) => {
-    setSubmitted(true);
     //* ADD a New Comment
     if (type === "SEND") {
       const { create } = services;
@@ -32,12 +28,12 @@ const AddComment = ({ type, origin, setterHandler, setNewChange }) => {
       const newMsg = { content: message };
       create(newMsg)
         .then((res) => {
-          setSubmitted(false);
+          console.log("Add New Comment");
         })
         .catch((err) => {
           console.log(err);
         });
-      setNewChange(true);
+      dispatch(newchange_false());
     }
     //* ADD a New Reply
     if (type === "Reply") {
@@ -45,15 +41,17 @@ const AddComment = ({ type, origin, setterHandler, setNewChange }) => {
     }
     //* Update a Comment
     if (type === "UPDATE") {
-      setClearInput(false);
       const { update } = services;
       const data = message;
       update(origin.id, { data: data })
         .then((res) => console.log(`We are updating ${origin.id}`))
         .catch((err) => console.log(`error Updating ${origin.id}`));
-      setterHandler(true);
+      dispatch(newchange_false());
     }
   };
+  useEffect(() => {
+    return () => {};
+  }, []);
   return (
     <AddContainer>
       <AddWrapper>
@@ -84,7 +82,7 @@ const AddComment = ({ type, origin, setterHandler, setNewChange }) => {
             onClick={() => {
               handleAction(type);
               hideInput(false);
-              setClearInput(true);
+              // setClearInput(true);
             }}
           >
             {type === "Reply" ? "SEND" : type}
