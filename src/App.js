@@ -25,6 +25,9 @@ function App() {
   // console.log("dataready= :", dataReady);
   const dispatch = useDispatch();
   const { comments } = useSelector((state) => state);
+  const sortedComments = comments.sort(function (a, b) {
+    return a.id - b.id;
+  });
 
   //! come from comments
   useEffect(() => {
@@ -46,7 +49,7 @@ function App() {
 
   return (
     <Comments
-      data={comments}
+      data={sortedComments}
       setNewChange={setNewChange}
       dataReady={dataReady}
     />
