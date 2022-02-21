@@ -37,10 +37,18 @@ const AddComment = ({ type, origin, setterHandler }) => {
     }
     //* ADD a New Reply
     if (type === "Reply") {
-      console.log("new Reply");
+      dispatch(add_comment(message));
+      const { create_reply } = services;
+      const data = { content: message };
+      console.log(`new Reply to: ${origin.id} with: ${message}`);
+      create_reply(origin.id, { data: data })
+        .then((res) => console.log(`We are Adding a Reply to: ${origin.id}`))
+        .catch((err) => console.log(`Error adding a Reply to ${origin.id}`));
+      dispatch(newchange_false());
     }
     //* Update a Comment
     if (type === "UPDATE") {
+      dispatch(add_comment(message));
       const { update } = services;
       const data = message;
       update(origin.id, { data: data })
