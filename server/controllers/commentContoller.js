@@ -11,7 +11,7 @@ const comments = JSON.parse(
 
 //* Get all comments
 exports.getAllComments = (req, res) => {
-  console.log(req.reqTime);
+  // console.log(req.reqTime);
   const commentsWrapper = Object.assign({
     message: 'Success',
     commentsCount: Object.keys(comments.comments).length,
@@ -133,7 +133,7 @@ exports.updateComment = (req, res) => {
     //! Update a Comment
     comment.content = newContent;
     const updatedComment = comment;
-    console.log(updatedComment);
+    // console.log(updatedComment);
     const updatedList = deleteItem(newList.comments, comment.id);
     updatedList.push(updatedComment);
     newList.comments = updatedList;
@@ -144,6 +144,56 @@ exports.updateComment = (req, res) => {
         res.status(201).json({
           status: 'Update Success',
           data: { comment: updatedComment },
+        });
+      }
+    );
+  }
+};
+
+//! Remove Comment
+exports.removeComment = (req, res) => {
+  const newList = comments;
+  const myId = +req.params.id;
+  // console.log(`Remove Comment ID: ${myId}`);
+  const toUpdateIs = toUpdate(newList, myId);
+  // console.log(toUpdateIs);
+  const { comment, reply } = toUpdateIs;
+  if (reply !== '') {
+    //! Delete a Reply
+    // delete reply
+    const updatedReplies = deleteItem(comment.replies, reply.id);
+    // update Replies
+    comment.replies = updatedReplies;
+    // Update Comment
+    const updatedComment = comment;
+    // Remove old version of the Comment that has the reply
+    const updatedList = deleteItem(newList.comments, comment.id);
+    // Push the Updated Comment to the list of Comments
+    updatedList.push(updatedComment);
+    // Update the whole list of comments Inside the newList
+    newList.comments = updatedList;
+    // Replace the Old file with the new One
+    fs.writeFile(
+      `${__dirname}/../modal/serverData.json`,
+      JSON.stringify(newList),
+      (err) => {
+        res.status(201).json({
+          status: 'Delete Reply Success',
+          data: { deleted_comment: reply },
+        });
+      }
+    );
+  } else {
+    //! Delete comment
+    const updatedList = deleteItem(newList.comments, comment.id);
+    newList.comments = updatedList;
+    fs.writeFile(
+      `${__dirname}/../modal/serverData.json`,
+      JSON.stringify(newList),
+      (err) => {
+        res.status(201).json({
+          status: 'Delete Comment Success',
+          data: { deleted_comment: comment },
         });
       }
     );

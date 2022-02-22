@@ -1,12 +1,16 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { to_delete } from "../../redux";
+import services from "./../../redux/manage/axiosServices";
+import { to_delete, newchange_false } from "../../redux";
 // prettier-ignore
 import {ModalContainer,ModalWrapper,ModalTitle,ModalMsg,ModalCtrl,ModalCancel,ModalAccept,
 } from "./ModalStyling";
 
 const Modal = () => {
   const dispatch = useDispatch();
+  const origin = useSelector((state) => state.toDelete);
+  console.log("This is the origin to delete: ", origin);
+  const { remove } = services;
   return (
     <ModalContainer>
       <ModalWrapper>
@@ -19,7 +23,18 @@ const Modal = () => {
           <ModalCancel onClick={() => dispatch(to_delete({}))}>
             NO, CANCEL
           </ModalCancel>
-          <ModalAccept>YES, DELETE</ModalAccept>
+          <ModalAccept
+            onClick={() => {
+              remove(origin.id)
+                .then((res) => {
+                  dispatch(newchange_false());
+                  dispatch(to_delete({}));
+                })
+                .catch((err) => console.log("Error Deleting: ", err));
+            }}
+          >
+            YES, DELETE
+          </ModalAccept>
         </ModalCtrl>
       </ModalWrapper>
     </ModalContainer>

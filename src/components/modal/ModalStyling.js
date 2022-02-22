@@ -48,6 +48,9 @@ export const ModalCancel = styled.div`
   padding: 0.7rem;
   border-radius: 0.5rem;
   cursor: pointer;
+  &:hover {
+    background-color: hsl(215, 10%, 60%);
+  }
 `;
 export const ModalAccept = styled.div`
   flex: 1;
@@ -56,4 +59,7 @@ export const ModalAccept = styled.div`
   padding: 0.7rem;
   border-radius: 0.5rem;
   cursor: pointer;
+  &:hover {
+    background-color: hsl(358, 79%, 80%);
+  }
 `;
