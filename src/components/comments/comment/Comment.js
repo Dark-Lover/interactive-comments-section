@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { to_delete } from "../../../redux";
+// React icons
 import { HiPlusSm, HiMinusSm } from "react-icons/hi";
 import { FaReply } from "react-icons/fa";
 import { RiPencilFill } from "react-icons/ri";
@@ -11,10 +14,10 @@ import AddComment from "../../addComment/AddComment";
 import { useEffect } from "react";
 
 const Comment = ({ content }) => {
-  // console.log(content);
   const [reply, setReply] = useState(false);
   const [edit, setEdit] = useState(false);
   const [deleteCom, setDelete] = useState(false);
+  const dispatch = useDispatch();
   useEffect(() => {}, [edit]);
   return (
     <CommentContainer>
@@ -40,7 +43,7 @@ const Comment = ({ content }) => {
           {content.user.username === "juliusomo" ? (
             <Reply>
               <ModifyComment>
-                <DeleteCom onClick={() => setDelete(!deleteCom)}>
+                <DeleteCom onClick={() => dispatch(to_delete(content))}>
                   <MdDelete /> Delete
                 </DeleteCom>
                 <EditCom onClick={() => setEdit(!edit)}>

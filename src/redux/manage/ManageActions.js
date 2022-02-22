@@ -3,6 +3,7 @@ import {
   ADD_COMMENT,
   UPDATE_COMMENT,
   NEWCHANGE_FALSE,
+  TO_DELETE_ITEM,
 } from "./ManageTypes";
 
 export const fetch_comments = (data) => {
@@ -30,5 +31,12 @@ export const newchange_false = () => {
   return {
     type: NEWCHANGE_FALSE,
     payload: false,
+  };
+};
+
+export const to_delete = (item) => {
+  return {
+    type: TO_DELETE_ITEM,
+    payload: item,
   };
 };

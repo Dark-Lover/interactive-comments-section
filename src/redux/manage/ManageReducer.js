@@ -3,12 +3,14 @@ import {
   ADD_COMMENT,
   UPDATE_COMMENT,
   NEWCHANGE_FALSE,
+  TO_DELETE_ITEM,
 } from "./ManageTypes";
 const initialState = {
   comments: [],
   user: {},
   currentComment: "",
   newChange: false,
+  toDelete: {},
 };
 
 const commentReducer = (state = initialState, action) => {
@@ -41,6 +43,12 @@ const commentReducer = (state = initialState, action) => {
       return {
         ...state,
         newChange: payload,
+      };
+    // To delete item
+    case TO_DELETE_ITEM:
+      return {
+        ...state,
+        toDelete: payload,
       };
     // Default Return
     default:

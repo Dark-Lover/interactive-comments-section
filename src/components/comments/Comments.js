@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import AddComment from "../addComment/AddComment";
 import { CommentsContainer, CommentsWrapper, ReplyBox } from "./CommentsStyles";
 // import { useDispatch, useSelector } from "react-redux";
 import ShowComment from "./reply/ShowComment";
 import Loading from "../loading/Loading";
+import Modal from "../modal/Modal";
 
 //! move to app.js
 // import { fetch_comments } from "../../redux";
@@ -22,6 +24,8 @@ import Loading from "../loading/Loading";
 const Comments = ({ data, dataReady, setNewChange }) => {
   //{ data, setNewChange, dataReady }
   const comments = data;
+  const toDelete = useSelector((state) => state.toDelete);
+  console.log("todelet: ", toDelete);
   //!move to app.js
   // const { comments } = useSelector((state) => state);
   // const [dataReady, setDataReady] = useState(false);
@@ -40,33 +44,31 @@ const Comments = ({ data, dataReady, setNewChange }) => {
   // }, [newChange]);
   //!
   return (
-    <CommentsContainer>
-      <CommentsWrapper>
-        {dataReady ? (
-          comments.map((comment) => {
-            return <ShowComment content={comment} key={comment.id} />;
-          })
-        ) : (
-          <Loading />
-        )}
+    <>
+      <CommentsContainer>
+        <CommentsWrapper>
+          {dataReady ? (
+            comments.map((comment) => {
+              return <ShowComment content={comment} key={comment.id} />;
+            })
+          ) : (
+            <Loading />
+          )}
 
-        {/* <Comment />
-        <AddComment />
-        <ReplyBox>
-          <Comment />
-          <Comment />
-        </ReplyBox>*/}
-        {dataReady ? (
-          <AddComment
-            type="SEND"
-            setterHandler=""
-            setNewChange={setNewChange}
-          />
-        ) : (
-          ""
-        )}
-      </CommentsWrapper>
-    </CommentsContainer>
+          {dataReady ? (
+            <AddComment
+              type="SEND"
+              setterHandler=""
+              setNewChange={setNewChange}
+            />
+          ) : (
+            ""
+          )}
+        </CommentsWrapper>
+      </CommentsContainer>
+      {Object.keys(toDelete).length !== 0 &&
+        toDelete.constructor === Object && <Modal />}
+    </>
   );
 };
 
