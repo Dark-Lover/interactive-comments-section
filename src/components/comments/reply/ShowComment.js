@@ -11,8 +11,6 @@ const ReplyWrapper = styled.div`
 `;
 const ReplyBox = styled.div`
   padding-left: 1.5rem;
-  /* padding-top: 1rem;
-  padding-bottom: 1rem; */
   position: relative;
   display: flex;
   flex-direction: column;

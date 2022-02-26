@@ -13,10 +13,10 @@ const AddComment = ({ type, origin, setterHandler }) => {
   const dispatch = useDispatch();
   const [message, setMessage] = useState("");
   const hideInput = setterHandler !== "" ? setterHandler : () => {};
-  if (origin) console.log(`we are ${type} to ${origin.id} with type: ${type}`);
-  else {
-    console.log("just ADDING A NEW COMMENT");
-  }
+  // if (origin) console.log(`we are ${type} to ${origin.id} with type: ${type}`);
+  // else {
+  //   console.log("just ADDING A NEW COMMENT");
+  // }
   const handleInput = (val) => {
     setMessage(val);
   };
@@ -40,7 +40,6 @@ const AddComment = ({ type, origin, setterHandler }) => {
       dispatch(add_comment(message));
       const { create_reply } = services;
       const data = { content: message };
-      console.log(`new Reply to: ${origin.id} with: ${message}`);
       create_reply(origin.id, { data: data })
         .then((res) => console.log(`We are Adding a Reply to: ${origin.id}`))
         .catch((err) => console.log(`Error adding a Reply to ${origin.id}`));

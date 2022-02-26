@@ -4,8 +4,6 @@ import spinner from "../../assets/spinner.gif";
 const LoadingContainer = styled.div`
   min-height: 100vh;
   display: flex;
-  /* justify-content: center;
-  align-items: center; */
   background-color: hsl(210, 10%, 96%);
 `;
 const LoadingImg = styled.img`

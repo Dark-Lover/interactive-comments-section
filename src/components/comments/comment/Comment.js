@@ -16,7 +16,6 @@ import { useEffect } from "react";
 const Comment = ({ content }) => {
   const [reply, setReply] = useState(false);
   const [edit, setEdit] = useState(false);
-  const [deleteCom, setDelete] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {}, [edit]);
   return (
@@ -68,8 +67,6 @@ const Comment = ({ content }) => {
       ) : (
         ""
       )}
-      {/* TODO: Add Delete Modal instead of Add comment*/}
-      {/* {deleteCom ? <AddComment type="DELETE" origin={content} /> : ""} */}
     </CommentContainer>
   );
 };

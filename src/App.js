@@ -22,30 +22,23 @@ const fetchData = async () => {
 function App() {
   const [newChange, setNewChange] = useState(false);
   const dataReady = useSelector((state) => state.newChange);
-  // console.log("dataready= :", dataReady);
   const dispatch = useDispatch();
   const { comments } = useSelector((state) => state);
   const sortedComments = comments.sort(function (a, b) {
     return a.id - b.id;
   });
 
-  //! come from comments
   useEffect(() => {
-    console.log("comments useEffect");
     if (!dataReady) {
       const myData = fetchData();
       myData
         .then((res) => {
           dispatch(fetch_comments(res));
-          // setDataReady(true);
-          // console.log("dataready after fetch: ", dataReady);
           setNewChange(true);
         })
         .catch((err) => console.log(err));
     }
-    // setNewChange(false);
   }, [dataReady]);
-  //!
 
   return (
     <Comments

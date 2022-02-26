@@ -11,7 +11,6 @@ const comments = JSON.parse(
 
 //* Get all comments
 exports.getAllComments = (req, res) => {
-  // console.log(req.reqTime);
   const commentsWrapper = Object.assign({
     message: 'Success',
     commentsCount: Object.keys(comments.comments).length,
@@ -59,8 +58,7 @@ exports.addReply = (req, res) => {
   const newId = getId(comments);
   const createdAt = timePassed();
   const commentInfo = toUpdate(newList, replyToId);
-  // console.log('##### Before ######');
-  // console.log(commentInfo);
+
   const newComment = Object.assign(req.body.data, {
     id: newId,
     createdAt: createdAt,
@@ -75,8 +73,7 @@ exports.addReply = (req, res) => {
     },
   });
   commentInfo.comment.replies.push(newComment);
-  // console.log('####### After ######');
-  // console.log(commentInfo);
+
   const updatedComment = commentInfo.comment;
   // Remove old version of the Comment
   const updatedList = deleteItem(newList.comments, commentInfo.comment.id);
@@ -133,7 +130,6 @@ exports.updateComment = (req, res) => {
     //! Update a Comment
     comment.content = newContent;
     const updatedComment = comment;
-    // console.log(updatedComment);
     const updatedList = deleteItem(newList.comments, comment.id);
     updatedList.push(updatedComment);
     newList.comments = updatedList;
@@ -154,9 +150,7 @@ exports.updateComment = (req, res) => {
 exports.removeComment = (req, res) => {
   const newList = comments;
   const myId = +req.params.id;
-  // console.log(`Remove Comment ID: ${myId}`);
   const toUpdateIs = toUpdate(newList, myId);
-  // console.log(toUpdateIs);
   const { comment, reply } = toUpdateIs;
   if (reply !== '') {
     //! Delete a Reply
